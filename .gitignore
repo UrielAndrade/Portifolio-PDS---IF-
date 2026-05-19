@@ -55,3 +55,44 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Visual Studio
+.vs/
+.vscode/
+*.sln.iml
+*.user
+*.suo
+*.userprefs
+
+# JetBrains IDEs
+.idea/
+*.sln.iml
+.rider/
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# IDE settings
+.editorconfig
+jsconfig.json
+
+# Temporary files
+*.swp
+*.swo
+*~
+.temp/
