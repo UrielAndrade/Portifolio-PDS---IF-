@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: url('/fonts/MinecraftRegular-Bmg3.otf') format('opentype');
+}
+
 html, body {
-    /* background: #09090b; */
-    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #09090b;
+    font-family: 'Minecraft', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
 }
