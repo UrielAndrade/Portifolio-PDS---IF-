@@ -1,16 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Remove="Components\Pages\Contato.razor.razor" />
     <Content Remove="wwwroot\contato.css" />
     <Content Remove="wwwroot\curriculo.css" />
     <Content Remove="wwwroot\historia.css" />
   </ItemGroup>
-
 </Project>
