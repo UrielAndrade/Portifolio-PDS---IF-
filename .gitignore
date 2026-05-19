@@ -96,3 +96,5 @@ jsconfig.json
 *.swo
 *~
 .temp/
+.vs/
+.github/
