@@ -69,12 +69,33 @@
     text-shadow: 2px 2px #000;
 }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+.contact-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
     max-width: 1068px;
     width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-form-card {
+    flex: 2;
+    min-width: 350px;
+}
+
+.form-title {
+    font-size: 20px;
+    text-align: center;
+    color: #333333;
 }
 
 .store-utility-card {
@@ -93,10 +114,66 @@
     box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
 }
 
+.contact-form-card.store-utility-card {
+    align-items: stretch;
+    text-align: left;
+}
+
 .body-strong {
     font-size: 14px;
     line-height: 1.5;
     margin: 0;
+}
+
+.body {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    color: #333333;
+}
+
+.mc-input {
+    background-color: #000000;
+    color: #ffffff;
+    border: 4px solid;
+    border-color: #555555 #ffffff #ffffff #555555;
+    font-family: var(--font-mc);
+    font-size: 12px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mc-input:focus {
+    outline: 2px solid #ffffff;
+}
+
+.mc-input::placeholder {
+    color: #888888;
+}
+
+.mc-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-submit {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    padding: 16px;
 }
 
 .text-link {
@@ -127,9 +204,13 @@
 }
 
 @media (max-width: 834px) {
-    .contact-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
+    .contact-layout {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .contact-form-card {
+        min-width: unset;
     }
 }
 
