@@ -18,7 +18,7 @@
 }
 
 .hero-section {
-    padding: 80px 24px 64px;
+    padding: 32px 24px 24px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 12px;
 }
 
 .product-tile-parchment {
@@ -45,14 +45,14 @@
 .product-tile-light {
     background-color: transparent;
     color: var(--mc-text);
-    padding: 64px 24px 80px;
+    padding: 32px 24px 48px;
     display: flex;
     justify-content: center;
     flex-grow: 1;
 }
 
 .tagline {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
     margin: 0;
     color: #fce803; 
@@ -60,14 +60,14 @@
 }
 
 .display-lg {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1.5;
     margin: 0;
 }
 
 .lead {
     font-family: "Courier New", Courier, monospace;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     line-height: 1.5;
     margin: 0;
@@ -89,10 +89,10 @@
     border: 6px solid;
     border-color: #ffffff #555555 #555555 #ffffff;
     border-radius: 0;
-    padding: 32px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     text-align: left;
     text-shadow: none;
     box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
@@ -106,7 +106,7 @@
 
 .body {
     font-family: "Courier New", Courier, monospace;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     line-height: 1.5;
     margin: 0;
@@ -138,8 +138,6 @@
 
 @media (max-width: 1068px) {
     .timeline-grid { grid-template-columns: repeat(2, 1fr); }
-    .display-lg { font-size: 24px; }
-    .lead { font-size: 18px; }
 }
 
 @media (max-width: 834px) {
@@ -147,8 +145,6 @@
 }
 
 @media (max-width: 640px) {
-    .hero-section { padding: 48px 16px; }
-    .product-tile-light { padding: 48px 16px; }
-    .display-lg { font-size: 20px; }
-    .lead { font-size: 16px; }
+    .hero-section { padding: 24px 16px; }
+    .product-tile-light { padding: 24px 16px; }
 }
