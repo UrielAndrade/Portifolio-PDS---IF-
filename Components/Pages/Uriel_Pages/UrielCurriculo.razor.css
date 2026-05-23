@@ -1,68 +1,133 @@
-﻿.curriculo {
+.curriculo {
+    --primary: #0066cc;
+    --ink: #1d1d1f;
+    --canvas: #ffffff;
+    --canvas-parchment: #f5f5f7;
+    --surface-tile-1: #272729;
+    --on-dark: #ffffff;
+    --hairline: #e0e0e0;
+    --font-display: "SF Pro Display", "Inter", system-ui, -apple-system, sans-serif;
+    --font-text: "SF Pro Text", "Inter", system-ui, -apple-system, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    background-color: var(--canvas-parchment);
+    min-height: 100vh;
+}
+
+.hero-section {
+    padding: 80px 24px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 980px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+}
+
+.product-tile-dark {
+    background-color: var(--surface-tile-1);
+    color: var(--on-dark);
+}
+
+.product-tile-parchment {
+    background-color: var(--canvas-parchment);
+    color: var(--ink);
+    padding: 80px 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.tagline {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.19;
+    letter-spacing: 0.231px;
+    margin: 0;
+}
+
+.display-lg {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.lead {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: 0.196px;
+    margin: 0;
     max-width: 800px;
-    margin: auto;
-    padding: 4rem 2rem;
-    color: white;
-    font-family: sans-serif;
 }
 
-.header {
-    margin-bottom: 3rem;
+.resume-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 800px;
+    width: 100%;
 }
 
-    .header span {
-        color: #60a5fa;
-        text-transform: uppercase;
-        font-size: .9rem;
-    }
-
-    .header h1 {
-        font-size: 4rem;
-        margin: .5rem 0 1rem;
-    }
-
-    .header p {
-        color: #a1a1aa;
-        max-width: 600px;
-        line-height: 1.7;
-    }
-
-.card {
-    background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 20px;
-    padding: 2rem;
+.store-utility-card {
+    background-color: var(--canvas);
+    color: var(--ink);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.section {
-    margin-bottom: 2rem;
+.body-strong {
+    font-family: var(--font-text);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.24;
+    letter-spacing: -0.374px;
+    margin: 0;
 }
 
-    .section:last-child {
-        margin-bottom: 0;
-    }
-
-    .section h2 {
-        margin-bottom: 1rem;
-        color: #fff;
-    }
-
-    .section p {
-        color: #cbd5e1;
-        line-height: 1.7;
-    }
+.body {
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.374px;
+    margin: 0;
+}
 
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: .7rem;
+    gap: 8px;
+    margin-top: 8px;
 }
 
-    .tags span {
-        background: #1e293b;
-        border: 1px solid #334155;
-        color: #93c5fd;
-        padding: .4rem .8rem;
-        border-radius: 999px;
-        font-size: .9rem;
+.configurator-option-chip {
+    background-color: var(--canvas-parchment);
+    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 9999px;
+    padding: 8px 16px;
+}
+
+@media (max-width: 640px) {
+    .hero-section, .product-tile-parchment {
+        padding: 48px 16px;
     }
+    .display-lg { font-size: 28px; }
+    .lead { font-size: 21px; }
+}
