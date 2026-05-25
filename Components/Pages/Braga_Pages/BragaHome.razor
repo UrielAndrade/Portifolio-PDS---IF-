@@ -1,1 +1,47 @@
-@page "/braga-home"
+@page "/braga"
+
+<PageTitle>Home - Arthur Braga</PageTitle>
+
+<div class="braga-portfolio">
+    <section class="pagina-inicial">
+        <section class="secao-banner">
+            <div class="banner-principal">
+                <p class="subtitulo-banner">Desenvolvedor & Entusiasta de Robótica</p>
+                <h1 class="titulo-banner">Transformando ideias em realidade digital</h1>
+
+                <p class="texto-banner">
+                    Sou o Arthur Braga. Explore meu espaço para conhecer minha trajetória no IFRO, 
+                    minhas habilidades técnicas e como podemos colaborar em seu próximo projeto.
+                </p>
+                
+                <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center;">
+                    <a href="/braga/curriculo" class="btn-primary" style="background: var(--white); color: var(--primary); padding: 0.8rem 1.5rem; border-radius: 30px; text-decoration: none; font-weight: 700; transition: var(--transition);">Ver Currículo</a>
+                    <a href="#destaques" style="background: rgba(255,255,255,0.1); color: var(--white); padding: 0.8rem 1.5rem; border-radius: 30px; text-decoration: none; font-weight: 700; border: 1px solid rgba(255,255,255,0.2); transition: var(--transition);">Explorar</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao-destaques" id="destaques" aria-label="Destaques do site">
+            <article class="cartao-destaque">
+                <span class="numero-destaque">01</span>
+                <h2>Minha História</h2>
+                <p>Conheça minha trajetória desde o início no IFRO até os projetos atuais de robótica e desenvolvimento.</p>
+                <a href="/braga/historia">Conhecer percurso <span>→</span></a>
+            </article>
+
+            <article class="cartao-destaque cartao-escuro">
+                <span class="numero-destaque">02</span>
+                <h2>Meu Currículo</h2>
+                <p>Confira minhas competências técnicas em Blazor, C#, JavaScript e minhas experiências acadêmicas.</p>
+                <a href="/braga/curriculo">Ver competências <span>→</span></a>
+            </article>
+
+            <article class="cartao-destaque cartao-destaque-contato" id="contato">
+                <span class="numero-destaque">03</span>
+                <h2>Vamos Conversar?</h2>
+                <p>Estou sempre aberto a novas parcerias, projetos desafiadores ou apenas uma troca de conhecimentos.</p>
+                <a href="mailto:contato@arthurbraga.com">Enviar e-mail <span>→</span></a>
+            </article>
+        </section>
+    </section>
+</div>

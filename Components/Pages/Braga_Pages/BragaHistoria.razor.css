@@ -1,0 +1,52 @@
+.braga-portfolio {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #64748b;
+    --accent: #f59e0b;
+    --bg-light: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --white: #ffffff;
+    --shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    --radius: 16px;
+    --transition: all 0.3s ease;
+
+    background: var(--bg-light);
+    font-family: 'Outfit', 'Inter', "Segoe UI", sans-serif;
+    color: var(--text-main);
+}
+
+.pagina-interna {
+    min-height: 100vh;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.container-conteudo {
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.titulo-pagina {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(to right, var(--primary), #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-content {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+/* from historia.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
