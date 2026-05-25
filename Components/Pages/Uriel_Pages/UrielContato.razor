@@ -1,60 +1,71 @@
 @page "/contato"
-
 <PageTitle>Contato — Uriel</PageTitle>
+<style>
+    body { margin: 0; background-color: #050505; }
+</style>
 
-<section class="contato">
-    <div class="hero-section product-tile-light">
+<section class="uriel-cyberpunk">
+    <div class="hero-section">
         <div class="hero-content">
-            <h2 class="tagline">Contato</h2>
-            <h1 class="display-lg">Vamos conversar</h1>
-            <p class="lead">Aberto para oportunidades, projetos e conexões na área de tecnologia.</p>
+            <h2 class="tagline">COMM_LINK // PING</h2>
+            <h1 class="display-lg">Estabelecer <span class="highlight">Conexão</span></h1>
+            <p class="lead">Aberto a protocolos de comunicação para projetos, vagas e parcerias estratégicas.</p>
         </div>
     </div>
 
-    <div class="contact-content product-tile-parchment">
+    <div class="contact-section">
         <div class="contact-layout">
-            
-            <div class="contact-grid">
-                <div class="store-utility-card">
-                    <h2 class="body-strong">Email</h2>
-                    <a href="mailto:andradeleiru@gmail.com" class="text-link">📧 andradeleiru@gmail.com</a>
+            <div class="contact-links">
+                <div class="cyber-card">
+                    <div class="card-header">
+                        <span class="cyber-id">@@</span>
+                        <h2 class="card-title">Email</h2>
+                    </div>
+                    <a href="mailto:andradeleiru@gmail.com" class="cyber-link">andradeleiru@gmail.com</a>
                 </div>
 
-                <div class="store-utility-card">
-                    <h2 class="body-strong">GitHub</h2>
-                    <a href="https://github.com/UrielAndrade" target="_blank" class="text-link">🐙 Git - Uriel</a>
+                <div class="cyber-card">
+                    <div class="card-header">
+                        <span class="cyber-id">GIT</span>
+                        <h2 class="card-title">GitHub</h2>
+                    </div>
+                    <a href="https://github.com/UrielAndrade" target="_blank" class="cyber-link">github.com/UrielAndrade</a>
                 </div>
 
-                <div class="store-utility-card">
-                    <h2 class="body-strong">LinkedIn</h2>
-                    <a href="https://www.linkedin.com/in/uriel-luiz-a019b2353/" target="_blank" class="text-link">💼 in/uriel-luiz</a>
+                <div class="cyber-card">
+                    <div class="card-header">
+                        <span class="cyber-id">IN</span>
+                        <h2 class="card-title">LinkedIn</h2>
+                    </div>
+                    <a href="https://www.linkedin.com/in/uriel-luiz-a019b2353/" target="_blank" class="cyber-link">in/uriel-luiz</a>
                 </div>
             </div>
 
-            <div class="contact-form-card store-utility-card">
-                <h2 class="display-lg form-title">/tell Uriel</h2>
-                <p class="body" style="margin-bottom: 24px; text-align: center; color: #555;">Envie uma mensagem direta para mim no servidor.</p>
+            <div class="cyber-card contact-form">
+                <div class="card-header" style="margin-bottom: 20px;">
+                    <span class="cyber-id">MSG</span>
+                    <h2 class="card-title">Transmissão Direta</h2>
+                </div>
                 
-                <form class="mc-form">
+                <form class="cyber-form">
                     <div class="form-group">
-                        <label class="body-strong">Seu Nickname (Nome):</label>
-                        <input type="text" class="mc-input" placeholder="Steve..." />
+                        <label>ID de Usuário (Nome)</label>
+                        <input type="text" class="cyber-input" placeholder="Seu nome..." />
                     </div>
 
                     <div class="form-group">
-                        <label class="body-strong">Seu Correio (Email):</label>
-                        <input type="email" class="mc-input" placeholder="steve@craft.com" />
+                        <label>Endereço de Resposta (Email)</label>
+                        <input type="email" class="cyber-input" placeholder="seu@email.com" />
                     </div>
 
                     <div class="form-group">
-                        <label class="body-strong">Mensagem:</label>
-                        <textarea class="mc-input mc-textarea" placeholder="Olá, gostaria de falar sobre..."></textarea>
+                        <label>Pacote de Dados (Mensagem)</label>
+                        <textarea class="cyber-input cyber-textarea" placeholder="Sua mensagem..."></textarea>
                     </div>
 
-                    <button type="button" class="text-link form-submit">✉️ Enviar Mensagem</button>
+                    <button type="button" class="cyber-btn primary submit-btn">Transmitir Dados</button>
                 </form>
             </div>
-
         </div>
     </div>
 </section>
