@@ -69,7 +69,6 @@ dotnet restore
 ```bash
 dotnet watch run
 ```
-4. O terminal irá gerar um link `localhost` (geralmente `http://localhost:5000` ou `https://localhost:5001`). Acesse-o no seu navegador e escolha seu Player!
 
 ---
 
