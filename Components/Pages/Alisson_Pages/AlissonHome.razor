@@ -1,0 +1,554 @@
+@layout AlissonLayout
+@page "/alisson"
+
+<PageTitle>Alisson Caio | Desenvolvedor Front-End</PageTitle>
+<style>
+    body { margin: 0; background-color: #0a0a0f; color: #e2e8f0; }
+</style>
+
+<div class="alisson-theme">
+<section class="hero" id="hero">
+    <!-- Background Image -->
+    <div class="hero-bg">
+        <img src="images/hero-bg.png" alt="" aria-hidden="true" class="hero-bg-img" />
+        <div class="hero-bg-overlay"></div>
+    </div>
+
+    <!-- Scanlines Effect -->
+    <div class="hero-scanlines" aria-hidden="true"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+        <!-- Knight + Nail assembly -->
+        <div class="knight-assembly">
+            <!-- Nail swipe (enters from left) -->
+            <div class="nail-slash" aria-hidden="true">
+                <img src="images/knight-nail.png" alt="" class="nail-img" />
+                <div class="slash-trail"></div>
+                <div class="slash-trail t2"></div>
+                <div class="slash-trail t3"></div>
+            </div>
+
+            <!-- Knight (drops from top) -->
+            <div class="knight-container">
+                <img src="images/knight.png" alt="The Knight" class="knight-img" id="hero-knight" />
+                <div class="knight-glow"></div>
+            </div>
+        </div>
+
+        <!-- Text (fades in after knight lands) -->
+        <div class="hero-text">
+            <p class="hero-eyebrow text-soul anim-eyebrow">
+                <span class="eyebrow-line"></span>
+                Desenvolvedor Front-End
+                <span class="eyebrow-line"></span>
+            </p>
+            <h1 class="hero-title anim-title">
+                Alisson <span class="text-soul glow-soul">Caio</span>
+            </h1>
+            <p class="hero-subtitle text-silver anim-subtitle">
+                Explorando as profundezas do código como o Knight percorre Hallownest —
+                <br />com propósito, precisão e elegância.
+            </p>
+
+            <!-- Soul Vessels -->
+            <div class="soul-vessels anim-vessels" aria-hidden="true">
+                <div class="vessel active"></div>
+                <div class="vessel active"></div>
+                <div class="vessel active"></div>
+                <div class="vessel active"></div>
+                <div class="vessel"></div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="hero-ctas anim-ctas">
+                <a href="/alisson/projetos" class="btn-soul" id="hero-cta-projects">
+                    <span>⚔</span> Ver Projetos
+                </a>
+                <a href="/alisson/sobre" class="btn-essence" id="hero-cta-about">
+                    <span>📜</span> Sobre Mim
+                </a>
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="scroll-hint anim-scroll" id="hero-scroll-hint">
+                <div class="scroll-nail"></div>
+                <span>Descer</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Stats -->
+<section class="stats-section" id="stats">
+    <div class="stats-container">
+        <div class="stat-item gothic-card" id="stat-projects">
+            <div class="stat-icon text-soul">⚡</div>
+            <div class="stat-number text-pale">10+</div>
+            <div class="stat-label text-silver">Projetos Concluídos</div>
+        </div>
+        <div class="stat-divider" aria-hidden="true">✦</div>
+        <div class="stat-item gothic-card" id="stat-skills">
+            <div class="stat-icon text-essence">✦</div>
+            <div class="stat-number text-pale">15+</div>
+            <div class="stat-label text-silver">Tecnologias</div>
+        </div>
+        <div class="stat-divider" aria-hidden="true">✦</div>
+        <div class="stat-item gothic-card" id="stat-experience">
+            <div class="stat-icon text-geo">◆</div>
+            <div class="stat-number text-pale">3+</div>
+            <div class="stat-label text-silver">Anos de Experiência</div>
+        </div>
+        <div class="stat-divider" aria-hidden="true">✦</div>
+        <div class="stat-item gothic-card" id="stat-passion">
+            <div class="stat-icon" style="color:var(--infection)">♥</div>
+            <div class="stat-number text-pale">∞</div>
+            <div class="stat-label text-silver">Paixão pelo Código</div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Skills Preview -->
+<section class="featured-section" id="featured-skills">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="text-pale">Charms Equipados</h2>
+            <div class="section-divider">
+                <span class="section-subtitle">habilidades em destaque</span>
+            </div>
+        </div>
+
+        <div class="charms-preview">
+            @foreach (var charm in FeaturedCharms)
+            {
+                <div class="charm-preview gothic-card" id="charm-@charm.Id">
+                    <div class="card-corner tl"></div>
+                    <div class="card-corner tr"></div>
+                    <div class="card-corner bl"></div>
+                    <div class="card-corner br"></div>
+                    <div class="charm-icon" style="color: @charm.Color">@charm.Icon</div>
+                    <div class="charm-name text-pale">@charm.Name</div>
+                    <div class="charm-level">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <span class="level-dot @(i < charm.Level ? "filled" : "")" style="--dot-color: @charm.Color"></span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="text-center mt-lg">
+            <a href="/alisson/habilidades" class="btn-soul" id="hero-all-skills">Ver Todos os Charms ✦</a>
+        </div>
+    </div>
+</section>
+
+@code {
+    private List<CharmItem> FeaturedCharms = new()
+    {
+        new("react",    "⚛",  "React",      4, "#83c4f5"),
+        new("blazor",   "🔷", "Blazor",     3, "#b49dd4"),
+        new("css",      "🎨", "CSS/SASS",   5, "#6db5e8"),
+        new("js",       "⚡", "JavaScript", 4, "#d4a820"),
+        new("html",     "📄", "HTML5",      5, "#c86820"),
+        new("figma",    "✏️", "Figma",      3, "#e07830"),
+    };
+
+    private record CharmItem(string Id, string Icon, string Name, int Level, string Color);
+}
+
+<style>
+    /* ── Hero ───────────────────────────────── */
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+    .hero-bg-img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.5;
+    }
+    .hero-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(10, 10, 15, 0.3) 0%,
+            rgba(10, 10, 15, 0.5) 50%,
+            rgba(10, 10, 15, 0.9) 90%,
+            rgba(10, 10, 15, 1)   100%
+        );
+    }
+
+    .hero-scanlines {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 3px,
+            rgba(0,0,0,0.04) 3px,
+            rgba(0,0,0,0.04) 4px
+        );
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-lg);
+        padding: var(--space-2xl) var(--space-lg);
+        text-align: center;
+        max-width: 900px;
+        width: 100%;
+    }
+
+    /* ── Knight Assembly ─────────────────────── */
+    .knight-assembly {
+        position: relative;
+        width: 280px;
+        height: 220px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    /* Knight drops from top */
+    .knight-container {
+        position: relative;
+        width: 160px;
+        height: 190px;
+        animation:
+            knightDrop 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both,
+            float 4s ease-in-out 1.2s infinite;
+        z-index: 2;
+    }
+
+    .knight-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Remove white background using mix-blend-mode */
+        mix-blend-mode: multiply;
+        filter:
+            invert(1)
+            drop-shadow(0 0 18px rgba(109, 181, 232, 0.6));
+    }
+
+    .knight-glow {
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 26px;
+        background: radial-gradient(ellipse, rgba(109, 181, 232, 0.4) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: breathe 3s ease-in-out 1.2s infinite;
+    }
+
+    /* Nail slash enters from left */
+    .nail-slash {
+        position: absolute;
+        left: -20px;
+        bottom: 60px;
+        width: 170px;
+        height: 60px;
+        animation: nailSlash 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.05s both;
+        z-index: 3;
+    }
+
+    .nail-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+        filter: invert(1) drop-shadow(0 0 10px rgba(109, 181, 232, 0.8));
+    }
+
+    /* Slash trail lines */
+    .slash-trail {
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        height: 2px;
+        width: 0;
+        background: linear-gradient(to left, var(--soul-blue), transparent);
+        border-radius: 2px;
+        transform: translateY(-50%) rotate(-5deg);
+        animation: trailExpand 0.4s ease 0.05s both;
+    }
+    .slash-trail.t2 {
+        top: 40%;
+        transform: translateY(-50%) rotate(-8deg);
+        animation-delay: 0.07s;
+        opacity: 0.6;
+    }
+    .slash-trail.t3 {
+        top: 60%;
+        transform: translateY(-50%) rotate(-3deg);
+        animation-delay: 0.09s;
+        opacity: 0.4;
+    }
+
+    /* Landing impact particles */
+    .knight-container::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--soul-blue);
+        border-radius: 50%;
+        box-shadow: 0 0 12px var(--soul-blue);
+        animation: impactFlash 0.5s ease 0.85s both;
+    }
+
+    /* ── Hero Text ───────────────────────────── */
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+    }
+
+    /* Staggered text entrance animations */
+    .anim-eyebrow {
+        opacity: 0;
+        animation: slideInUp 0.6s ease 0.9s forwards;
+    }
+    .anim-title {
+        opacity: 0;
+        animation: slideInUp 0.7s ease 1.05s forwards;
+    }
+    .anim-subtitle {
+        opacity: 0;
+        animation: slideInUp 0.6s ease 1.2s forwards;
+    }
+    .anim-vessels {
+        opacity: 0;
+        animation: slideInUp 0.5s ease 1.35s forwards;
+    }
+    .anim-ctas {
+        opacity: 0;
+        animation: slideInUp 0.5s ease 1.5s forwards;
+    }
+    .anim-scroll {
+        opacity: 0;
+        animation: fadeIn 0.5s ease 1.8s forwards;
+    }
+
+    .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        font-family: var(--font-title);
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+    }
+    .eyebrow-line {
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--soul-blue);
+        opacity: 0.6;
+    }
+
+    .hero-title { margin-bottom: 0; }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        max-width: 600px;
+        line-height: 1.8;
+    }
+
+    /* Soul Vessels */
+    .soul-vessels {
+        display: flex;
+        gap: var(--space-sm);
+        align-items: center;
+    }
+    .vessel {
+        width: 14px; height: 18px;
+        border: 1px solid var(--stone-mid);
+        border-radius: 50% 50% 40% 40%;
+        background: transparent;
+        transition: all var(--transition-base);
+    }
+    .vessel.active {
+        background: var(--soul-blue);
+        border-color: var(--soul-blue);
+        box-shadow: 0 0 10px var(--soul-blue), inset 0 0 5px rgba(255,255,255,0.3);
+    }
+
+    /* CTAs */
+    .hero-ctas {
+        display: flex;
+        gap: var(--space-md);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Scroll Hint */
+    .scroll-hint {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: var(--stone-mid);
+        font-size: 0.7rem;
+        font-family: var(--font-title);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        animation: breathe 2s ease-in-out 1.8s infinite !important;
+        margin-top: var(--space-md);
+    }
+    .scroll-nail {
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, var(--soul-blue), transparent);
+        border-radius: 2px;
+    }
+
+    /* ── Keyframes (local) ───────────────────── */
+    @@keyframes knightDrop {
+        0%   { transform: translateY(-120px); opacity: 0; }
+        60%  { transform: translateY(10px);   opacity: 1; }
+        80%  { transform: translateY(-6px); }
+        100% { transform: translateY(0px);    opacity: 1; }
+    }
+
+    @@keyframes nailSlash {
+        0%   { transform: translateX(-180px) rotate(-10deg); opacity: 0; }
+        50%  { opacity: 1; }
+        80%  { transform: translateX(10px) rotate(2deg); }
+        100% { transform: translateX(0) rotate(0deg); opacity: 0; }
+    }
+
+    @@keyframes trailExpand {
+        0%   { width: 0; opacity: 0; }
+        40%  { width: 80px; opacity: 0.8; }
+        100% { width: 120px; opacity: 0; }
+    }
+
+    @@keyframes impactFlash {
+        0%   { transform: translateX(-50%) scaleX(0); opacity: 0; }
+        40%  { transform: translateX(-50%) scaleX(1); opacity: 1; }
+        100% { transform: translateX(-50%) scaleX(1.5); opacity: 0; }
+    }
+
+    @@keyframes slideInUp {
+        from { transform: translateY(24px); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    /* ── Stats ──────────────────────────────── */
+    .stats-section {
+        padding: var(--space-xl) var(--space-lg);
+        background: linear-gradient(to bottom, var(--void-black), var(--deep-cave));
+    }
+    .stats-container {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-lg);
+        flex-wrap: wrap;
+    }
+    .stat-item {
+        text-align: center;
+        padding: var(--space-lg);
+        min-width: 150px;
+        flex: 1;
+    }
+    .stat-icon { font-size: 1.5rem; margin-bottom: var(--space-sm); }
+    .stat-number {
+        font-family: var(--font-title);
+        font-size: 2.5rem;
+        font-weight: 900;
+        line-height: 1;
+    }
+    .stat-label {
+        font-size: 0.8rem;
+        font-family: var(--font-title);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: var(--space-xs);
+    }
+    .stat-divider {
+        color: var(--stone-mid);
+        font-size: 1rem;
+    }
+
+    /* ── Featured ───────────────────────────── */
+    .featured-section {
+        padding: var(--space-xl) var(--space-lg);
+        background: var(--deep-cave);
+    }
+    .section-container { max-width: 1100px; margin: 0 auto; }
+
+    .charms-preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
+    }
+
+    .charm-preview {
+        text-align: center;
+        padding: var(--space-lg) var(--space-md);
+        cursor: default;
+    }
+    .charm-icon { font-size: 2rem; margin-bottom: var(--space-sm); }
+    .charm-name {
+        font-family: var(--font-title);
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--space-sm);
+    }
+    .charm-level {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+    }
+    .level-dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        border: 1px solid var(--stone-mid);
+        transition: all var(--transition-base);
+    }
+    .level-dot.filled {
+        background: var(--dot-color, var(--soul-blue));
+        border-color: var(--dot-color, var(--soul-blue));
+        box-shadow: 0 0 6px var(--dot-color, var(--soul-blue));
+    }
+
+    @@media (max-width: 768px) {
+        .stats-container { flex-direction: column; }
+        .stat-divider { display: none; }
+        .knight-container { width: 120px; height: 140px; }
+        .knight-assembly { width: 220px; }
+        .nail-slash { width: 130px; }
+    }
+</style>
+</div>

@@ -1,0 +1,334 @@
+@layout AlissonLayout
+@page "/alisson/habilidades"
+
+<PageTitle>Habilidades | Alisson Caio</PageTitle>
+<style>
+    body { margin: 0; background-color: #0a0a0f; color: #e2e8f0; }
+</style>
+<div class="alisson-theme">
+
+
+<div class="page-container">
+    <section class="skills-hero">
+        <div class="section-header">
+            <h1 class="text-pale">Arsenal de Charms</h1>
+            <div class="section-divider">
+                <span class="section-subtitle">habilidades & tecnologias</span>
+            </div>
+            <p class="text-silver text-center" style="max-width:600px; margin:0 auto; margin-top: 1rem">
+                Como o Knight coleta charms pelo reino de Hallownest, eu acumulo habilidades
+                que fortalecem cada projeto que construo.
+            </p>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <div class="category-filter" id="skills-filter">
+        @foreach (var cat in Categories)
+        {
+            <button
+                class="filter-btn @(activeCategory == cat ? "active" : "")"
+                id="filter-@cat.ToLower().Replace(" ", "-")"
+                @onclick="() => activeCategory = cat">
+                @cat
+            </button>
+        }
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="skills-grid" id="skills-grid">
+        @foreach (var skill in FilteredSkills)
+        {
+            <div class="charm-card gothic-card @(hoveredSkill == skill.Id ? "equipped" : "")"
+                 id="charm-card-@skill.Id"
+                 @onmouseenter="() => hoveredSkill = skill.Id"
+                 @onmouseleave="() => hoveredSkill = null">
+                <div class="card-corner tl"></div>
+                <div class="card-corner tr"></div>
+                <div class="card-corner bl"></div>
+                <div class="card-corner br"></div>
+
+                <!-- Charm Icon -->
+                <div class="charm-icon-lg" style="color: @skill.Color">
+                    @skill.Icon
+                </div>
+
+                <!-- Notch indicator (equipped animation) -->
+                <div class="charm-notch @(hoveredSkill == skill.Id ? "active" : "")">
+                    <div class="notch-glow" style="background: @skill.Color"></div>
+                </div>
+
+                <!-- Name -->
+                <h3 class="charm-name text-pale">@skill.Name</h3>
+
+                <!-- Level Bar -->
+                <div class="skill-bar-container">
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill"
+                             style="width: @(skill.Level * 20)%; background: linear-gradient(to right, @skill.Color, @skill.ColorLight)">
+                        </div>
+                    </div>
+                    <span class="skill-percent text-silver">@(skill.Level * 20)%</span>
+                </div>
+
+                <!-- Tags -->
+                <div class="skill-tags">
+                    <span class="tag-pill @skill.TagType">@skill.Category</span>
+                </div>
+
+                <!-- Equip Text -->
+                @if (hoveredSkill == skill.Id)
+                {
+                    <div class="equip-text text-soul">✦ Equipado</div>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- Lore Divider -->
+    <div class="lore-divider">
+        <div class="lore-line"></div>
+        <div class="lore-icon text-essence">⚔</div>
+        <div class="lore-line"></div>
+    </div>
+
+    <!-- Tools Section -->
+    <section class="tools-section" id="tools-section">
+        <div class="section-header">
+            <h2 class="text-pale">Relíquias & Ferramentas</h2>
+        </div>
+        <div class="tools-grid">
+            @foreach (var tool in Tools)
+            {
+                <div class="tool-item gothic-card" id="tool-@tool.Id">
+                    <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                    <div class="card-corner bl"></div><div class="card-corner br"></div>
+                    <span class="tool-icon">@tool.Icon</span>
+                    <span class="tool-name text-silver">@tool.Name</span>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+@code {
+    private string? hoveredSkill;
+    private string activeCategory = "Todos";
+
+    private static readonly string[] Categories = { "Todos", "Frontend", "Frameworks", "Design", "Ferramentas" };
+
+    private List<SkillItem> AllSkills = new()
+    {
+        // Frontend
+        new("html5",       "📄", "HTML5",        5, "#e07830", "#f09050", "Frontend", "soul"),
+        new("css3",        "🎨", "CSS3 / SASS",  5, "#6db5e8", "#83c4f5", "Frontend", "soul"),
+        new("javascript",  "⚡", "JavaScript",   4, "#d4a820", "#f0c840", "Frontend", "soul"),
+        new("typescript",  "🔷", "TypeScript",   3, "#83a8d1", "#a0c0e0", "Frontend", "soul"),
+
+        // Frameworks
+        new("react",       "⚛",  "React",        4, "#83c4f5", "#a0d8ff", "Frameworks", "essence"),
+        new("blazor",      "🔮", "Blazor",       3, "#b49dd4", "#c8b0e8", "Frameworks", "essence"),
+        new("nextjs",      "▲",  "Next.js",      3, "#c0c0c8", "#e0e0f0", "Frameworks", "essence"),
+
+        // Design
+        new("figma",       "✏️", "Figma",        3, "#c86820", "#e07830", "Design",    "geo"),
+        new("responsive",  "📱", "Responsive",   5, "#6db5e8", "#83c4f5", "Design",    "geo"),
+        new("uiux",        "🎭", "UI/UX",        4, "#b49dd4", "#c8b0e8", "Design",    "geo"),
+
+        // Ferramentas
+        new("git",         "🌿", "Git",          4, "#8fbd8f", "#a0d0a0", "Ferramentas","soul"),
+        new("csharp",      "🔷", "C#",           3, "#b49dd4", "#c8b0e8", "Ferramentas","soul"),
+        new("dotnet",      "🔷", ".NET",         3, "#8a6bac", "#a080cc", "Ferramentas","soul"),
+    };
+
+    private List<ToolItem> Tools = new()
+    {
+        new("vscode",   "💻", "VS Code"),
+        new("github",   "🐙", "GitHub"),
+        new("firefox",  "🦊", "Firefox DevTools"),
+        new("npm",      "📦", "NPM"),
+        new("postman",  "📮", "Postman"),
+        new("notion",   "📓", "Notion"),
+        new("vercel",   "▲",  "Vercel"),
+        new("firebase", "🔥", "Firebase"),
+    };
+
+    private IEnumerable<SkillItem> FilteredSkills =>
+        activeCategory == "Todos"
+            ? AllSkills
+            : AllSkills.Where(s => s.Category == activeCategory);
+
+    private record SkillItem(string Id, string Icon, string Name, int Level, string Color, string ColorLight, string Category, string TagType);
+    private record ToolItem(string Id, string Icon, string Name);
+}
+
+<style>
+    .page-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-lg);
+    }
+
+    .skills-hero { margin-bottom: var(--space-xl); padding-top: var(--space-lg); }
+
+    /* Filter */
+    .category-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        justify-content: center;
+        margin-bottom: var(--space-xl);
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1.5rem;
+        background: transparent;
+        border: 1px solid var(--stone-mid);
+        color: var(--silk-silver);
+        font-family: var(--font-title);
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+    .filter-btn:hover, .filter-btn.active {
+        border-color: var(--soul-blue);
+        color: var(--soul-blue);
+        background: rgba(109, 181, 232, 0.1);
+        box-shadow: 0 0 12px rgba(109, 181, 232, 0.2);
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--space-md);
+        margin-bottom: var(--space-xl);
+    }
+
+    .charm-card {
+        text-align: center;
+        padding: var(--space-lg) var(--space-md);
+        cursor: default;
+        transition: all var(--transition-base);
+    }
+
+    .charm-card.equipped {
+        border-color: var(--soul-blue);
+        background: linear-gradient(135deg, var(--deep-cave), rgba(109, 181, 232, 0.08));
+        animation: glowPulse 1.5s ease-in-out infinite;
+    }
+
+    .charm-icon-lg {
+        font-size: 2.5rem;
+        margin-bottom: var(--space-sm);
+        display: block;
+        transition: transform var(--transition-base);
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .charm-card.equipped .charm-icon-lg { transform: scale(1.15); }
+
+    .charm-notch {
+        width: 20px; height: 6px;
+        border: 1px solid var(--stone-mid);
+        border-radius: 100px;
+        margin: 0 auto var(--space-sm);
+        position: relative;
+        overflow: hidden;
+    }
+    .charm-notch.active .notch-glow {
+        position: absolute;
+        inset: 0;
+        border-radius: 100px;
+        opacity: 0.8;
+    }
+
+    .charm-name {
+        font-size: 1rem;
+        margin-bottom: var(--space-sm);
+        letter-spacing: 0.02em;
+    }
+
+    .skill-bar-container {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-sm);
+    }
+
+    .skill-bar {
+        flex: 1;
+        height: 4px;
+        background: var(--stone-dark);
+        border-radius: 100px;
+        overflow: hidden;
+    }
+
+    .skill-bar-fill {
+        height: 100%;
+        border-radius: 100px;
+        transition: width 0.6s ease;
+    }
+
+    .skill-percent {
+        font-size: 0.7rem;
+        font-family: var(--font-title);
+        min-width: 30px;
+        text-align: right;
+    }
+
+    .skill-tags { display: flex; justify-content: center; }
+
+    .equip-text {
+        font-family: var(--font-title);
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-top: var(--space-sm);
+        animation: breathe 1s ease-in-out infinite;
+    }
+
+    /* Lore Divider */
+    .lore-divider {
+        display: flex;
+        align-items: center;
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+    }
+    .lore-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--stone-mid), transparent);
+    }
+    .lore-icon {
+        font-size: 1.5rem;
+        animation: breathe 3s ease-in-out infinite;
+    }
+
+    /* Tools */
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: var(--space-sm);
+        margin-top: var(--space-lg);
+    }
+
+    .tool-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .tool-icon { font-size: 1.2rem; }
+    .tool-name { font-size: 0.85rem; }
+
+    @@media (max-width: 600px) {
+        .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+</style>
+
+</div>

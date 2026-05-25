@@ -1,0 +1,51 @@
+@implements IDisposable
+
+<div class="particles-container" aria-hidden="true">
+    @foreach (var p in particles)
+    {
+        <div class="particle @p.Type"
+             style="
+                left: @(p.X)%;
+                width: @(p.Size)px;
+                height: @(p.Size)px;
+                animation-duration: @(p.Duration)s;
+                animation-delay: @(p.Delay)s;
+                opacity: 0;
+             ">
+        </div>
+    }
+</div>
+
+@code {
+    private List<Particle> particles = new();
+    private System.Threading.Timer? timer;
+
+    protected override void OnInitialized()
+    {
+        var rng = new Random();
+        var types = new[] { "soul", "soul", "soul", "essence", "geo" };
+
+        for (int i = 0; i < 30; i++)
+        {
+            particles.Add(new Particle
+            {
+                X = rng.NextDouble() * 100,
+                Size = rng.NextDouble() * 4 + 2,
+                Duration = rng.NextDouble() * 10 + 8,
+                Delay = rng.NextDouble() * -20,
+                Type = types[rng.Next(types.Length)]
+            });
+        }
+    }
+
+    public void Dispose() { timer?.Dispose(); }
+
+    private class Particle
+    {
+        public double X { get; set; }
+        public double Size { get; set; }
+        public double Duration { get; set; }
+        public double Delay { get; set; }
+        public string Type { get; set; } = "soul";
+    }
+}

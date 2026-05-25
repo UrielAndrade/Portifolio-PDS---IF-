@@ -1,162 +1,336 @@
-﻿/* container */
-.pagina-inicial {
-    color: #e2e8f0;
+/* Gamer Theme Base */
+.home-container.gamer-theme {
     min-height: 100vh;
-    padding: 2rem 1.5rem 4rem;
-}
-
-/* layout */
-.secao-banner,
-.secao-destaques {
-    margin: 0 auto;
-    max-width: 1100px;
-}
-
-/* banner */
-.secao-banner {
-    padding: 1.5rem 0 2rem;
-}
-
-.banner-principal {
-    background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.92));
-    border: 1px solid rgba(148,163,184,0.15);
-    border-radius: 24px;
-    color: #f8fafc;
-    padding: 2.8rem 2rem;
-    text-align: center;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.45), 0 0 40px rgba(59,130,246,0.08);
-    transition: all .3s ease;
-}
-
-    .banner-principal:hover {
-        transform: translateY(-4px);
-    }
-
-/* textos */
-.subtitulo-banner,
-.numero-destaque {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.subtitulo-banner {
-    color: #7dd3fc;
-    margin-bottom: 0.75rem;
-}
-
-.titulo-banner {
-    font-family: "Georgia", serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin: 0;
-}
-
-.texto-banner {
-    line-height: 1.7;
-    margin: 1rem auto 0;
-    max-width: 38rem;
-    color: #cbd5e1;
-}
-
-/* grid */
-.secao-destaques {
-    display: grid;
-    gap: 1.2rem;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-/* cards */
-.cartao-destaque {
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(148,163,184,0.12);
-    backdrop-filter: blur(10px);
-    border-radius: 18px;
-    padding: 1.6rem;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-    transition: all .25s ease;
-}
-
-    .cartao-destaque:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 16px 35px rgba(0,0,0,0.1);
-    }
-
-/* variações */
-.cartao-escuro {
-    background: linear-gradient(145deg, #0f172a, #111827);
-    color: #f8fafc;
-}
-
-.cartao-destaque-contato {
-    color: #60a5fa;
-    margin-bottom: 1rem;
-    display: inline-block;}
-
-/* número */
-.numero-destaque {
-    color: #60a5fa;
-    margin-bottom: 1rem;
-    display: inline-block;
-}
-
-/* títulos */
-.cartao-destaque h2 {
-    font-family: "Georgia", serif;
-    font-size: 1.5rem;
-    margin-bottom: 0.7rem;
-}
-
-/* texto */
-.cartao-destaque p {
-    line-height: 1.7;
-    margin-bottom: 1.2rem;
-    color: #94a3b8;
-}
-
-/* link */
-.cartao-destaque a {
-    color: #93c5fd;
-    font-weight: 700;
-    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #0d0d12;
+    background-image: 
+        radial-gradient(circle at top, rgba(46, 139, 87, 0.1) 0%, transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 30px 30px, 30px 30px;
     position: relative;
 }
 
-    /* underline animado */
-    .cartao-destaque a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        width: 0%;
-        height: 2px;
-        background: currentColor;
-        transition: width .3s ease;
-    }
-
-    .cartao-destaque a:hover::after {
-        width: 100%;
-    }
-
-/* responsivo */
-@media (max-width: 900px) {
-    .secao-destaques {
-        grid-template-columns: 1fr;
-    }
+/* RGB Bar */
+.rgb-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2e8b57, #00f0ff, #7000ff, #ff003c, #cc0000);
+    background-size: 300% 100%;
+    animation: rgb-slide 4s infinite linear;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-@media (max-width: 640px) {
-    .pagina-inicial {
-        padding: 1rem 1rem 3rem;
-    }
+@keyframes rgb-slide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
 
-    .banner-principal,
-    .cartao-destaque {
-        border-radius: 14px;
-    }
+/* Header */
+.home-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    z-index: 10;
+}
 
-    .banner-principal {
-        padding: 1.5rem;
-    }
+/* IFRO Badge with RGB Glow */
+.ifro-badge.rgb-glow {
+    display: inline-block;
+    background-color: rgba(13, 13, 18, 0.8);
+    color: #4ade80;
+    border: 2px solid #2e8b57;
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: 0 0 15px rgba(46, 139, 87, 0.4), inset 0 0 10px rgba(46, 139, 87, 0.2);
+    animation: pulse-glow 2s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 15px rgba(46, 139, 87, 0.4), inset 0 0 10px rgba(46, 139, 87, 0.2); }
+    100% { box-shadow: 0 0 25px rgba(46, 139, 87, 0.8), inset 0 0 15px rgba(46, 139, 87, 0.4); border-color: #4ade80; }
+}
+
+/* Glitch Title */
+.glitch-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    letter-spacing: 2px;
+}
+
+.glitch-title::before, .glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0d0d12;
+}
+
+.glitch-title::before {
+    left: 4px;
+    text-shadow: -2px 0 #ff003c;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-title::after {
+    left: -4px;
+    text-shadow: -2px 0 #00f0ff;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 80% 0); }
+    20% { clip-path: inset(60% 0 10% 0); }
+    40% { clip-path: inset(40% 0 50% 0); }
+    60% { clip-path: inset(80% 0 5% 0); }
+    80% { clip-path: inset(10% 0 70% 0); }
+    100% { clip-path: inset(30% 0 20% 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 60% 0); }
+    20% { clip-path: inset(30% 0 20% 0); }
+    40% { clip-path: inset(70% 0 10% 0); }
+    60% { clip-path: inset(20% 0 50% 0); }
+    80% { clip-path: inset(50% 0 30% 0); }
+    100% { clip-path: inset(5% 0 80% 0); }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    margin-bottom: 1.5rem;
+}
+
+.press-start-prompt {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fcee0a;
+    animation: blink 1s infinite;
+    letter-spacing: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* Banners Grid */
+.banners-wrapper {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    perspective: 1000px; /* For 3D effect */
+}
+
+/* Base Banner Link */
+.banner-link {
+    text-decoration: none;
+    flex: 1;
+    min-width: 320px;
+    max-width: 500px;
+    height: 320px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.player-card:hover {
+    transform: scale(1.05) translateY(-10px);
+    z-index: 10;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sys-tag {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.banner-link h2 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    font-weight: 800;
+}
+
+.banner-link p {
+    font-size: 1.1rem;
+    margin: 0 0 1.5rem 0;
+    opacity: 0.9;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    background: rgba(0,0,0,0.4);
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Uriel's Banner - Cyberpunk */
+.banner-uriel {
+    background-color: #0d0d12;
+    color: #f0f0f0;
+    border: 2px solid rgba(0, 240, 255, 0.2);
+    border-radius: 0; /* Sharp edges for cyberpunk */
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.banner-uriel .sys-tag {
+    color: #00f0ff;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.banner-uriel h2 {
+    color: #f0f0f0;
+    text-shadow: 3px 3px 0px rgba(255, 0, 60, 0.8);
+}
+
+.banner-uriel .stats span {
+    color: #fcee0a;
+}
+
+.banner-uriel:hover {
+    border-color: #00f0ff;
+    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+/* Braga's Banner - Clean Modern */
+.banner-braga {
+    background: linear-gradient(135deg, #1d4ed8, #0f172a);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.banner-braga .sys-tag {
+    color: #bfdbfe;
+    font-weight: 800;
+}
+
+.banner-braga h2 {
+    background: linear-gradient(to right, #ffffff, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.banner-braga .stats span {
+    color: #60a5fa;
+}
+
+.banner-braga:hover {
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Alisson's Banner - Hollow Knight Theme */
+.banner-alisson {
+    background: linear-gradient(to bottom, #0a0a0f, #141423);
+    color: #cbd5e1;
+    border: 1px solid rgba(109, 181, 232, 0.2);
+    font-family: 'Georgia', serif;
+    border-radius: 12px 30px 12px 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.banner-alisson::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at bottom, rgba(109, 181, 232, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.banner-alisson .sys-tag {
+    color: #a0aec0;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.banner-alisson h2 {
+    color: #f8fafc;
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(109, 181, 232, 0.4);
+}
+
+.banner-alisson .stats {
+    background: rgba(109, 181, 232, 0.1);
+    border-color: rgba(109, 181, 232, 0.3);
+}
+
+.banner-alisson .stats span {
+    color: #e2e8f0;
+    text-shadow: 0 0 8px rgba(109, 181, 232, 0.8);
+}
+
+.banner-alisson:hover {
+    box-shadow: 0 15px 35px rgba(109, 181, 232, 0.2), inset 0 0 15px rgba(109, 181, 232, 0.1);
+    border-color: rgba(109, 181, 232, 0.5);
+}
+
+@media (max-width: 800px) {
+    .glitch-title { font-size: 2.5rem; }
+    .banners-wrapper { flex-direction: column; align-items: center; }
+    .banner-link { width: 100%; min-width: unset; height: 300px; }
 }

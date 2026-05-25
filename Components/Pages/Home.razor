@@ -1,16 +1,56 @@
-﻿@page "/"
+@page "/"
 
+<PageTitle>Portfólios - IFRO Ji-Paraná</PageTitle>
 
-<section class="pagina-inicial">
-    <h1>Bem-vindo ao nosso portifólio</h1>
-    <p>Explore meus projetos, habilidades e trajetória profissional.</p>
-    <div class="banner-uriel">
-        <a href="/uriel-home">Conheça o portfólio de Uriel</a>    
+<style>
+    body { margin: 0; background-color: #09090b; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+</style>
+
+<div class="home-container gamer-theme">
+    <div class="ifro-brand-bar rgb-bar"></div>
+
+    <header class="home-header">
+        <div class="ifro-badge rgb-glow">IFRO • Campus Ji-Paraná</div>
+        <h1 class="glitch-title" data-text="SELECT YOUR PLAYER">SELECT YOUR PLAYER</h1>
+        <p class="subtitle">Projetos e portfólios desenvolvidos por alunos do Técnico em Informática.</p>
+        <div class="press-start-prompt">INSERT COIN TO CONTINUE...</div>
+    </header>
+
+    <div class="banners-wrapper">
+        <a href="/uriel-home" class="banner-link banner-uriel player-card">
+            <div class="banner-content">
+                <span class="sys-tag">PLAYER 1 // BACKEND</span>
+                <h2>Uriel Andrade</h2>
+                <p>Estética Cyberpunk | Backend | Alta Performance</p>
+                <div class="stats">
+                    <span>ATK: ???</span>
+                    <span>DEF: ???</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/braga" class="banner-link banner-braga player-card">
+            <div class="banner-content">
+                <span class="sys-tag">PLAYER 2 // FULLSTACK</span>
+                <h2>Arthur Braga</h2>
+                <p>Design Clean | Fullstack | Robótica</p>
+                <div class="stats">
+                    <span>ATK: 88</span>
+                    <span>DEF: 95</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/alisson" class="banner-link banner-alisson player-card">
+            <div class="banner-content">
+                <span class="sys-tag">PLAYER 3 // FRONT-END</span>
+                <h2>Alisson Caio</h2>
+                <p>Hollow Knight | Frontend | UX/UI</p>
+                <div class="stats">
+                    <span>ATK: 90</span>
+                    <span>DEF: 99</span>
+                </div>
+            </div>
+        </a>
     </div>
-    <div class="banner-braga">
-        <a href="/braga">Conheça o portfólio de Braga</a>
-    </div>
-    <div class="banner-alisson">
-        <a href="/alisson-home">Conheça o portfólio de Alisson</a>
-    </div>
-</section>
+</div>

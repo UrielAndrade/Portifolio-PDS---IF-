@@ -1,0 +1,211 @@
+@inject NavigationManager Nav
+@implements IDisposable
+
+<header class="hk-nav @(isScrolled ? "scrolled" : "") @(menuOpen ? "menu-open" : "")">
+    <nav class="nav-inner">
+        <!-- Logo -->
+        <a href="/alisson" class="nav-logo" id="nav-logo">
+            <span class="nav-logo-icon">⚔</span>
+            <span class="nav-logo-text">Alisson <span class="text-soul">Caio</span></span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav-links" id="nav-links">
+            <li><NavLink href="/alisson" Match="NavLinkMatch.All" class="nav-link" id="nav-home" ActiveClass="active">Início</NavLink></li>
+            <li><NavLink href="/alisson/sobre" class="nav-link" id="nav-about" ActiveClass="active">Sobre</NavLink></li>
+            <li><NavLink href="/alisson/habilidades" class="nav-link" id="nav-skills" ActiveClass="active">Habilidades</NavLink></li>
+            <li><NavLink href="/alisson/projetos" class="nav-link" id="nav-projects" ActiveClass="active">Projetos</NavLink></li>
+            <li><NavLink href="/alisson/contato" class="nav-link" id="nav-contact" ActiveClass="active">Contato</NavLink></li>
+        </ul>
+
+        <!-- Mobile Toggle -->
+        <button class="nav-toggle" @onclick="ToggleMenu" id="nav-toggle" aria-label="Abrir menu">
+            <span class="toggle-line @(menuOpen ? "open" : "")"></span>
+            <span class="toggle-line @(menuOpen ? "open" : "")"></span>
+            <span class="toggle-line @(menuOpen ? "open" : "")"></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    @if (menuOpen)
+    {
+        <div class="mobile-menu" id="mobile-menu">
+            <ul>
+                <li><NavLink href="/alisson" Match="NavLinkMatch.All" @onclick="CloseMenu" class="mobile-link">Início</NavLink></li>
+                <li><NavLink href="/alisson/sobre" @onclick="CloseMenu" class="mobile-link">Sobre</NavLink></li>
+                <li><NavLink href="/alisson/habilidades" @onclick="CloseMenu" class="mobile-link">Habilidades</NavLink></li>
+                <li><NavLink href="/alisson/projetos" @onclick="CloseMenu" class="mobile-link">Projetos</NavLink></li>
+                <li><NavLink href="/alisson/contato" @onclick="CloseMenu" class="mobile-link">Contato</NavLink></li>
+            </ul>
+        </div>
+    }
+</header>
+
+@code {
+    private bool isScrolled = false;
+    private bool menuOpen = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Nav.LocationChanged += OnLocationChanged;
+        }
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        menuOpen = false;
+        StateHasChanged();
+    }
+
+    private void ToggleMenu() => menuOpen = !menuOpen;
+    private void CloseMenu() => menuOpen = false;
+
+    public void Dispose()
+    {
+        Nav.LocationChanged -= OnLocationChanged;
+    }
+}
+
+<style>
+    .hk-nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        background: transparent;
+        transition: background var(--transition-slow), backdrop-filter var(--transition-slow), border-bottom var(--transition-slow);
+        border-bottom: 1px solid transparent;
+    }
+
+    .hk-nav.scrolled {
+        background: rgba(10, 10, 15, 0.9);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--stone-dark);
+    }
+
+    .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--space-lg);
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: var(--pale-court);
+        font-family: var(--font-title);
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        transition: color var(--transition-base);
+    }
+    .nav-logo:hover { color: var(--soul-blue); }
+
+    .nav-logo-icon {
+        font-size: 1.3rem;
+        color: var(--soul-blue);
+        animation: breathe 3s ease-in-out infinite;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: var(--space-lg);
+        align-items: center;
+    }
+
+    .nav-link {
+        color: var(--silk-silver);
+        font-family: var(--font-title);
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        position: relative;
+        padding: 4px 0;
+        transition: color var(--transition-base);
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 0; height: 1px;
+        background: var(--soul-blue);
+        box-shadow: 0 0 6px var(--soul-blue);
+        transition: width var(--transition-base);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--soul-blue);
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+
+    /* Mobile Toggle */
+    .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .toggle-line {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--silk-silver);
+        border-radius: 2px;
+        transition: all var(--transition-base);
+    }
+
+    .toggle-line.open:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .toggle-line.open:nth-child(2) { opacity: 0; }
+    .toggle-line.open:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--stone-dark);
+        padding: var(--space-lg);
+        animation: fadeIn 0.2s ease;
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .mobile-link {
+        display: block;
+        color: var(--silk-silver);
+        font-family: var(--font-title);
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: var(--space-sm) 0;
+        border-bottom: 1px solid var(--stone-dark);
+        transition: color var(--transition-base), padding-left var(--transition-base);
+    }
+    .mobile-link:hover { color: var(--soul-blue); padding-left: var(--space-md); }
+
+    @@media (max-width: 768px) {
+        .nav-links { display: none; }
+        .nav-toggle { display: flex; }
+    }
+</style>

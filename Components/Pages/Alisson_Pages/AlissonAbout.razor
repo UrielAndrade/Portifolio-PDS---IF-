@@ -1,0 +1,349 @@
+@layout AlissonLayout
+@page "/alisson/sobre"
+
+<PageTitle>Sobre | Alisson Caio</PageTitle>
+<style>
+    body { margin: 0; background-color: #0a0a0f; color: #e2e8f0; }
+</style>
+<div class="alisson-theme">
+
+
+<div class="page-container">
+    <!-- Header -->
+    <section class="about-hero">
+        <div class="section-header">
+            <h1 class="text-pale">O Viajante</h1>
+            <div class="section-divider">
+                <span class="section-subtitle">sobre mim</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="about-grid">
+        <!-- Left: Photo + Socials -->
+        <div class="about-left" id="about-profile">
+            <div class="profile-frame">
+                <div class="profile-placeholder">
+                    <div class="profile-initials text-soul">AC</div>
+                    <div class="profile-glow"></div>
+                </div>
+                <div class="profile-frame-corners">
+                    <span class="frame-corner tl"></span>
+                    <span class="frame-corner tr"></span>
+                    <span class="frame-corner bl"></span>
+                    <span class="frame-corner br"></span>
+                </div>
+            </div>
+
+            <!-- Info Card -->
+            <div class="info-card gothic-card" id="about-info-card">
+                <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                <div class="card-corner bl"></div><div class="card-corner br"></div>
+                <div class="info-row">
+                    <span class="info-icon text-soul">📍</span>
+                    <span class="text-silver">Brasil</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-icon text-essence">💼</span>
+                    <span class="text-silver">Desenvolvedor Front-End</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-icon text-geo">🎓</span>
+                    <span class="text-silver">Ciência da Computação</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-icon" style="color:var(--infection)">🌐</span>
+                    <a href="https://github.com/Bilissom" target="_blank" class="text-soul">github.com/Bilissom</a>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://github.com/Bilissom" target="_blank" class="social-btn" id="about-github">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="mailto:alissoncaiosilvasilveira70@gmail.com" class="social-btn essence" id="about-email">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    Email
+                </a>
+            </div>
+        </div>
+
+        <!-- Right: Bio + Timeline -->
+        <div class="about-right">
+            <!-- Bio -->
+            <div class="bio-scroll gothic-card" id="about-bio">
+                <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                <div class="card-corner bl"></div><div class="card-corner br"></div>
+                <div class="scroll-ornament">❦</div>
+                <p>
+                    Olá! Sou <strong class="text-pale">Alisson Caio</strong>, desenvolvedor front-end apaixonado por
+                    criar interfaces bonitas e funcionais. Assim como o Knight desbrava os mistérios de Hallownest,
+                    eu exploro as profundezas do desenvolvimento web com curiosidade e determinação.
+                </p>
+                <br />
+                <p>
+                    Tenho experiência com tecnologias modernas como <span class="text-soul">React</span>,
+                    <span class="text-essence">Blazor</span>, <span class="text-geo">CSS avançado</span> e
+                    JavaScript. Gosto de transformar designs em experiências interativas que encantam os usuários.
+                </p>
+                <br />
+                <p>
+                    Quando não estou codando, estou explorando novos jogos, aprendendo sobre design de UX
+                    ou contribuindo para projetos open source.
+                </p>
+                <div class="scroll-ornament bottom">❦</div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline-section" id="about-timeline">
+                <h3 class="text-pale mb-lg">⏳ Jornada em Hallownest</h3>
+
+                @foreach (var item in Timeline)
+                {
+                    <div class="timeline-item" id="timeline-@item.Id">
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                            <div class="marker-line"></div>
+                        </div>
+                        <div class="timeline-content gothic-card">
+                            <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                            <div class="timeline-year text-soul">@item.Year</div>
+                            <h4 class="timeline-title text-pale">@item.Title</h4>
+                            <p class="timeline-desc text-silver">@item.Description</p>
+                            <div class="timeline-tags">
+                                @foreach (var tag in item.Tags)
+                                {
+                                    <span class="tag-pill soul">@tag</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<TimelineItem> Timeline = new()
+    {
+        new("uni", "2021", "Início na Graduação", "Comecei minha jornada em Ciência da Computação, onde descobri minha paixão pelo desenvolvimento front-end.", new[]{"HTML", "CSS", "JavaScript"}),
+        new("first-proj", "2022", "Primeiros Projetos", "Desenvolvi meus primeiros projetos web, explorando React e design responsivo.", new[]{"React", "Git", "Bootstrap"}),
+        new("blazor", "2023", "Descobrindo Blazor", "Mergulhei no ecossistema .NET e Blazor, expandindo meu arsenal de tecnologias.", new[]{"Blazor", "C#", ".NET"}),
+        new("now", "2024–hoje", "Em Evolução Contínua", "Atualmente focado em criar experiências web de alta qualidade, unindo design e performance.", new[]{"React", "Blazor", "Figma", "SASS"}),
+    };
+
+    private record TimelineItem(string Id, string Year, string Title, string Description, string[] Tags);
+}
+
+<style>
+    .page-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-lg);
+    }
+
+    .about-hero { margin-bottom: var(--space-xl); padding-top: var(--space-lg); }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: var(--space-xl);
+        align-items: start;
+    }
+
+    /* Left Column */
+    .about-left {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+        position: sticky;
+        top: 90px;
+    }
+
+    .profile-frame {
+        position: relative;
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+    }
+
+    .profile-placeholder {
+        width: 100%;
+        height: 100%;
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, var(--deep-cave), var(--cave-mid));
+        border: 1px solid var(--stone-mid);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .profile-initials {
+        font-family: var(--font-title);
+        font-size: 4rem;
+        font-weight: 900;
+        text-shadow: 0 0 30px var(--soul-blue);
+        animation: breathe 3s ease-in-out infinite;
+    }
+
+    .profile-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(109, 181, 232, 0.1) 0%, transparent 60%);
+    }
+
+    .profile-frame-corners .frame-corner {
+        position: absolute;
+        width: 20px; height: 20px;
+        border-color: var(--soul-blue);
+        border-style: solid;
+    }
+    .frame-corner.tl { top: -4px; left: -4px; border-width: 2px 0 0 2px; }
+    .frame-corner.tr { top: -4px; right: -4px; border-width: 2px 2px 0 0; }
+    .frame-corner.bl { bottom: -4px; left: -4px; border-width: 0 0 2px 2px; }
+    .frame-corner.br { bottom: -4px; right: -4px; border-width: 0 2px 2px 0; }
+
+    .info-card { padding: var(--space-md); }
+    .info-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm) 0;
+        border-bottom: 1px solid var(--stone-dark);
+        font-size: 0.9rem;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon { font-size: 1rem; min-width: 20px; text-align: center; }
+
+    .social-links { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+    .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-sm);
+        padding: 0.6rem 1rem;
+        border: 1px solid var(--soul-blue);
+        border-radius: var(--radius-sm);
+        color: var(--soul-blue);
+        font-family: var(--font-title);
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all var(--transition-base);
+    }
+    .social-btn:hover {
+        background: rgba(109, 181, 232, 0.1);
+        box-shadow: var(--shadow-soul);
+        color: var(--soul-glow);
+    }
+    .social-btn.essence {
+        border-color: var(--essence-purple);
+        color: var(--essence-purple);
+    }
+    .social-btn.essence:hover {
+        background: rgba(180, 157, 212, 0.1);
+        box-shadow: var(--shadow-essence);
+        color: var(--essence-glow);
+    }
+
+    /* Right Column */
+    .bio-scroll {
+        position: relative;
+        padding: var(--space-xl) var(--space-lg);
+        line-height: 1.9;
+    }
+
+    .scroll-ornament {
+        text-align: center;
+        color: var(--soul-blue);
+        font-size: 1.5rem;
+        opacity: 0.5;
+        margin-bottom: var(--space-md);
+    }
+    .scroll-ornament.bottom {
+        margin-top: var(--space-md);
+        margin-bottom: 0;
+    }
+
+    /* Timeline */
+    .timeline-section { margin-top: var(--space-xl); }
+
+    .timeline-item {
+        display: flex;
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+
+    .timeline-marker {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 8px;
+    }
+
+    .marker-dot {
+        width: 14px; height: 14px;
+        border-radius: 50%;
+        background: var(--soul-blue);
+        border: 2px solid var(--soul-glow);
+        box-shadow: 0 0 10px var(--soul-blue);
+        flex-shrink: 0;
+        animation: glowPulse 2s ease-in-out infinite;
+    }
+
+    .marker-line {
+        flex: 1;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--soul-blue), transparent);
+        margin-top: 4px;
+        min-height: 40px;
+    }
+
+    .timeline-item:last-child .marker-line { display: none; }
+
+    .timeline-content {
+        flex: 1;
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    .timeline-year {
+        font-family: var(--font-title);
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: var(--space-xs);
+    }
+
+    .timeline-title {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-xs);
+    }
+
+    .timeline-desc {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-md);
+    }
+
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+
+    @@media (max-width: 900px) {
+        .about-grid { grid-template-columns: 1fr; }
+        .about-left { position: static; }
+        .profile-frame { width: 160px; height: 160px; }
+    }
+</style>
+
+</div>

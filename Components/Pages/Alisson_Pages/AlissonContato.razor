@@ -1,0 +1,441 @@
+@layout AlissonLayout
+@page "/alisson/contato"
+
+<PageTitle>Contato | Alisson Caio</PageTitle>
+<style>
+    body { margin: 0; background-color: #0a0a0f; color: #e2e8f0; }
+</style>
+<div class="alisson-theme">
+
+
+<div class="page-container">
+    <section class="contact-hero">
+        <div class="section-header">
+            <h1 class="text-pale">Invocar o Espírito</h1>
+            <div class="section-divider">
+                <span class="section-subtitle">entre em contato</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact-grid">
+        <!-- Left: NPC Dialog Box -->
+        <div class="npc-dialog-section" id="contact-npc">
+            <div class="npc-container">
+                <!-- NPC Character: Knight Skull -->
+                <div class="npc-character">
+                    <div class="npc-avatar">
+                        <img src="images/knight-skull.png" alt="The Knight" class="skull-img" />
+                        <div class="skull-glow"></div>
+                    </div>
+                    <div class="npc-name text-soul">Alisson Caio</div>
+                    <div class="npc-title text-silver">Desenvolvedor Front-End</div>
+                </div>
+
+                <!-- Dialog Box -->
+                <div class="dialog-box gothic-card" id="contact-dialog-box">
+                    <div class="card-corner tl"></div>
+                    <div class="card-corner tr"></div>
+                    <div class="card-corner bl"></div>
+                    <div class="card-corner br"></div>
+                    <div class="dialog-arrow"></div>
+                    <p class="dialog-text">
+                        <span class="dialog-cursor text-soul">▶</span>
+                        @dialogText
+                    </p>
+                </div>
+
+                <!-- Dialog Options -->
+                <div class="dialog-options" id="contact-dialog-options">
+                    @foreach (var opt in DialogOptions)
+                    {
+                        <button
+                            class="dialog-option @(activeDialog == opt.Id ? "selected" : "")"
+                            id="dialog-opt-@opt.Id"
+                            @onclick="() => SelectDialog(opt)">
+                            <span class="option-arrow">›</span>
+                            @opt.Label
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <!-- Contact Links -->
+            <div class="contact-links" id="contact-links">
+                <a href="mailto:alissoncaiosilvasilveira70@gmail.com" class="contact-link-item" id="contact-email">
+                    <div class="link-icon text-soul">
+                        <!-- Email icon -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                    </div>
+                    <div class="link-info">
+                        <span class="link-label text-silver">Email</span>
+                        <span class="link-value text-pale">alissoncaiosilvasilveira70@gmail.com</span>
+                    </div>
+                </a>
+                <a href="https://github.com/Bilissom" target="_blank" class="contact-link-item" id="contact-github">
+                    <div class="link-icon text-essence">
+                        <!-- GitHub SVG logo -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <div class="link-info">
+                        <span class="link-label text-silver">GitHub</span>
+                        <span class="link-value text-pale">github.com/Bilissom</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-section" id="contact-form-section">
+            <div class="form-header">
+                <h2 class="text-pale">📜 Deixar Mensagem</h2>
+                <p class="text-silver" style="font-size:0.9rem">
+                    Escreva sua mensagem no pergaminho abaixo. Responderei o mais breve possível.
+                </p>
+            </div>
+
+            @if (formSent)
+            {
+                <div class="form-success gothic-card" id="form-success">
+                    <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                    <div class="card-corner bl"></div><div class="card-corner br"></div>
+                    <div class="success-icon text-soul" style="font-size:3rem">✦</div>
+                    <h3 class="text-pale">Mensagem Enviada!</h3>
+                    <p class="text-silver">Sua alma chegou até mim. Em breve retornarei ao lar.</p>
+                    <button class="btn-soul" @onclick="() => formSent = false" id="form-reset-btn">
+                        Enviar Outra
+                    </button>
+                </div>
+            }
+            else
+            {
+                <form class="contact-form gothic-card" @onsubmit="SubmitForm" id="contact-form">
+                    <div class="card-corner tl"></div>
+                    <div class="card-corner tr"></div>
+                    <div class="card-corner bl"></div>
+                    <div class="card-corner br"></div>
+
+                    <div class="form-group" id="form-group-name">
+                        <label class="form-label text-soul" for="input-name">Nome do Viajante</label>
+                        <input type="text" id="input-name" class="form-input" placeholder="Seu nome..."
+                               @bind="formName" required />
+                    </div>
+
+                    <div class="form-group" id="form-group-email">
+                        <label class="form-label text-soul" for="input-email">Endereço de Retorno</label>
+                        <input type="email" id="input-email" class="form-input" placeholder="seu@email.com"
+                               @bind="formEmail" required />
+                    </div>
+
+                    <div class="form-group" id="form-group-subject">
+                        <label class="form-label text-soul" for="input-subject">Assunto da Missão</label>
+                        <input type="text" id="input-subject" class="form-input" placeholder="Sobre o que você deseja falar..."
+                               @bind="formSubject" />
+                    </div>
+
+                    <div class="form-group" id="form-group-message">
+                        <label class="form-label text-soul" for="input-message">Mensagem Sagrada</label>
+                        <textarea id="input-message" class="form-input form-textarea"
+                                  placeholder="Escreva sua mensagem aqui..."
+                                  rows="5" @bind="formMessage" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-soul form-submit" id="form-submit-btn">
+                        <span>✉</span> Enviar Mensagem
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private string dialogText = "Olá, viajante! Que bom te ver por aqui. Estou sempre aberto a novas colaborações, projetos e conexões. Como posso ajudar?";
+    private string? activeDialog;
+    private bool formSent = false;
+    private string formName = "", formEmail = "", formSubject = "", formMessage = "";
+
+    private List<DialogOption> DialogOptions = new()
+    {
+        new("freelance",    "Preciso de ajuda com um projeto",
+            "Excelente! Adoro novos desafios. Me conte mais sobre o projeto — tecnologias, prazo e escopo. Posso trabalhar com React, Blazor, CSS avançado e muito mais!"),
+        new("job",          "Tenho uma oportunidade de emprego",
+            "Muito obrigado pelo interesse! Estou sempre aberto a boas oportunidades. Por favor, envie os detalhes por email ou mensagem abaixo."),
+        new("collab",       "Quero colaborar num projeto open source",
+            "Projetos open source são uma paixão minha! Adoro contribuir com a comunidade. Me diga mais sobre o projeto e como posso ajudar."),
+        new("just-talking", "Só quero dar um oi!",
+            "Que ótimo! Um oi amigável é sempre bem-vindo em Hallownest. Fique à vontade para entrar em contato pelo formulário ao lado ou pelas minhas redes sociais!"),
+    };
+
+    private void SelectDialog(DialogOption opt)
+    {
+        activeDialog = opt.Id;
+        dialogText = opt.Text;
+    }
+
+    private void SubmitForm()
+    {
+        // In a real app, this would call an API / email service
+        formSent = true;
+        formName = formEmail = formSubject = formMessage = "";
+    }
+
+    private record DialogOption(string Id, string Label, string Text);
+}
+
+<style>
+    .page-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-lg);
+    }
+
+    .contact-hero { margin-bottom: var(--space-xl); padding-top: var(--space-lg); }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+        align-items: start;
+    }
+
+    /* NPC Section */
+    .npc-dialog-section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xl);
+    }
+
+    .npc-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .npc-character {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+    }
+
+    .npc-avatar {
+        width: 110px; height: 110px;
+        border: 2px solid var(--soul-blue);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 24px rgba(109, 181, 232, 0.35), inset 0 0 20px rgba(10,10,15,0.8);
+        overflow: hidden;
+        position: relative;
+        animation: breathe 3s ease-in-out infinite;
+        background: var(--void-black);
+    }
+
+    .skull-img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        /* skull image is dark on black — use filter to make eyes glow */
+        filter: brightness(1.2) drop-shadow(0 0 8px rgba(109,181,232,0.7));
+    }
+
+    .skull-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(109,181,232,0.08) 0%, transparent 70%);
+        animation: breathe 2s ease-in-out infinite;
+    }
+
+    .npc-name {
+        font-family: var(--font-title);
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+    }
+
+    .npc-title {
+        font-size: 0.8rem;
+        font-family: var(--font-title);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+    }
+
+    /* Dialog Box */
+    .dialog-box {
+        position: relative;
+        padding: var(--space-lg);
+        border-color: var(--soul-blue);
+    }
+
+    .dialog-cursor {
+        animation: breathe 0.8s ease-in-out infinite;
+        font-size: 0.7rem;
+        margin-right: 6px;
+    }
+
+    .dialog-text {
+        font-style: italic;
+        line-height: 1.8;
+        color: var(--mist-white) !important;
+    }
+
+    /* Dialog Options */
+    .dialog-options {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+        padding-left: var(--space-md);
+    }
+
+    .dialog-option {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm) var(--space-md);
+        background: transparent;
+        border: 1px solid var(--stone-dark);
+        border-radius: var(--radius-sm);
+        color: var(--silk-silver);
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-align: left;
+        transition: all var(--transition-base);
+    }
+
+    .dialog-option:hover {
+        border-color: var(--soul-blue);
+        color: var(--soul-blue);
+        background: rgba(109, 181, 232, 0.05);
+        padding-left: calc(var(--space-md) + 8px);
+    }
+
+    .dialog-option.selected {
+        border-color: var(--soul-blue);
+        color: var(--soul-blue);
+        background: rgba(109, 181, 232, 0.1);
+    }
+
+    .option-arrow {
+        color: var(--soul-blue);
+        font-size: 1.2rem;
+        line-height: 1;
+        transition: transform var(--transition-base);
+    }
+    .dialog-option:hover .option-arrow { transform: translateX(4px); }
+
+    /* Contact Links */
+    .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .contact-link-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: var(--deep-cave);
+        border: 1px solid var(--stone-dark);
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        transition: all var(--transition-base);
+    }
+    .contact-link-item:hover {
+        border-color: var(--soul-blue);
+        background: rgba(109, 181, 232, 0.05);
+        transform: translateX(4px);
+    }
+
+    .link-icon { font-size: 1.3rem; min-width: 24px; text-align: center; }
+    .link-info { display: flex; flex-direction: column; gap: 2px; }
+    .link-label {
+        font-family: var(--font-title);
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+    .link-value { font-size: 0.9rem; }
+
+    /* Form */
+    .contact-form-section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+
+    .contact-form {
+        padding: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .form-label {
+        font-family: var(--font-title);
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .form-input {
+        background: var(--void-black);
+        border: 1px solid var(--stone-mid);
+        border-radius: var(--radius-sm);
+        color: var(--mist-white);
+        font-family: var(--font-body);
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        outline: none;
+        transition: all var(--transition-base);
+        width: 100%;
+    }
+
+    .form-input::placeholder { color: var(--stone-mid); }
+
+    .form-input:focus {
+        border-color: var(--soul-blue);
+        box-shadow: 0 0 0 2px rgba(109, 181, 232, 0.15);
+    }
+
+    .form-textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Success */
+    .form-success {
+        padding: var(--space-xl);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+        border-color: var(--soul-blue);
+        animation: soulRise 0.5s ease;
+    }
+
+    @@media (max-width: 800px) {
+        .contact-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+</div>

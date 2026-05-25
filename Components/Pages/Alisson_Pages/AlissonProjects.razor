@@ -1,0 +1,331 @@
+@layout AlissonLayout
+@page "/alisson/projetos"
+
+<PageTitle>Projetos | Alisson Caio</PageTitle>
+<style>
+    body { margin: 0; background-color: #0a0a0f; color: #e2e8f0; }
+</style>
+<div class="alisson-theme">
+
+
+<div class="page-container">
+    <section class="projects-hero">
+        <div class="section-header">
+            <h1 class="text-pale">Mapa de Hallownest</h1>
+            <div class="section-divider">
+                <span class="section-subtitle">projetos & explorações</span>
+            </div>
+            <p class="text-silver text-center" style="max-width:600px; margin: var(--space-md) auto 0">
+                Cada projeto é uma área do mapa desbravada — com seus próprios desafios,
+                criaturas e segredos a descobrir.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Tags -->
+    <div class="tag-filter" id="projects-filter">
+        @foreach (var tag in FilterTags)
+        {
+            <button
+                class="filter-btn @(activeFilter == tag ? "active" : "")"
+                id="filter-@tag.ToLower().Replace("#","-")"
+                @onclick="() => activeFilter = tag">
+                @tag
+            </button>
+        }
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid" id="projects-grid">
+        @foreach (var proj in FilteredProjects)
+        {
+            <article class="project-card gothic-card @(proj.Featured ? "featured" : "")"
+                     id="project-@proj.Id">
+                <div class="card-corner tl"></div>
+                <div class="card-corner tr"></div>
+                <div class="card-corner bl"></div>
+                <div class="card-corner br"></div>
+
+                <!-- Featured Badge -->
+                @if (proj.Featured)
+                {
+                    <div class="featured-badge">
+                        <span class="text-geo">◆</span>
+                        <span>Destaque</span>
+                    </div>
+                }
+
+                <!-- Project Header -->
+                <div class="project-header">
+                    <div class="project-icon" style="color: @proj.Color">@proj.Icon</div>
+                    <div class="project-meta">
+                        <span class="project-area text-silver">@proj.Area</span>
+                        <h3 class="project-title text-pale">@proj.Title</h3>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <p class="project-desc text-silver">@proj.Description</p>
+
+                <!-- Tags -->
+                <div class="project-tags">
+                    @foreach (var tag in proj.Tags)
+                    {
+                        <span class="tag-pill soul">@tag</span>
+                    }
+                </div>
+
+                <!-- Links -->
+                <div class="project-links">
+                    @if (!string.IsNullOrEmpty(proj.GitHub))
+                    {
+                        <a href="@proj.GitHub" target="_blank" class="project-link" id="proj-github-@proj.Id">
+                            <span>⚡</span> Código
+                        </a>
+                    }
+                    @if (!string.IsNullOrEmpty(proj.Demo))
+                    {
+                        <a href="@proj.Demo" target="_blank" class="project-link demo" id="proj-demo-@proj.Id">
+                            <span>🔮</span> Demo
+                        </a>
+                    }
+                </div>
+
+                <!-- Map stamp effect -->
+                <div class="map-stamp" style="color: @proj.Color">@proj.Icon</div>
+            </article>
+        }
+    </div>
+
+    @if (!FilteredProjects.Any())
+    {
+        <div class="no-results text-center">
+            <div style="font-size: 3rem; margin-bottom: 1rem">🗺️</div>
+            <p class="text-silver">Nenhum projeto encontrado nessa área do mapa.</p>
+        </div>
+    }
+</div>
+
+@code {
+    private string activeFilter = "Todos";
+
+    private string[] FilterTags = { "Todos", "React", "Blazor", "CSS", "JavaScript", "C#" };
+
+    private List<ProjectItem> AllProjects = new()
+    {
+        new ProjectItem("portfolio-v1",  "🗺️", "Portifólio v1",
+            "Meu primeiro portifólio pessoal, construído com HTML, CSS e JavaScript puro. Design responsivo e animações customizadas.",
+            new[]{"HTML", "CSS", "JavaScript"}, "Cidade das Lágrimas",
+            "#6db5e8", "https://github.com/alissoncaio", "https://portifolio-alisson.web.app", true),
+
+        new ProjectItem("portfolio-v2",  "🔮", "Portifólio Blazor",
+            "Este mesmo portifólio! Desenvolvido em Blazor WebAssembly com temática Hollow Knight. C# no front-end!",
+            new[]{"Blazor", "C#", ".NET", "CSS"}, "Santuário da Alma",
+            "#b49dd4", "https://github.com/alissoncaio", "", true),
+
+        new ProjectItem("landing-page",  "⚡", "Landing Page Moderna",
+            "Landing page para produto SaaS com animações CSS avançadas, design responsivo e otimização de performance.",
+            new[]{"React", "CSS", "Vite"}, "Prados Verdes",
+            "#d4a820", "https://github.com/alissoncaio", "", false),
+
+        new ProjectItem("dashboard",     "📊", "Dashboard Analytics",
+            "Dashboard interativo com gráficos em tempo real, filtros avançados e exportação de dados.",
+            new[]{"React", "JavaScript", "CSS"}, "Arquivo Real",
+            "#83c4f5", "https://github.com/alissoncaio", "", false),
+
+        new ProjectItem("ecommerce",     "🛒", "E-commerce UI",
+            "Interface de e-commerce com carrinho de compras, filtros de produtos e checkout funcional.",
+            new[]{"React", "JavaScript", "CSS"}, "Mercado Bazaar",
+            "#c86820", "https://github.com/alissoncaio", "", false),
+
+        new ProjectItem("todo-app",      "✅", "App de Tarefas",
+            "Aplicativo de gerenciamento de tarefas com drag-and-drop, categorias e sincronização local.",
+            new[]{"JavaScript", "CSS", "HTML"}, "Campos de Descanso",
+            "#8fbd8f", "https://github.com/alissoncaio", "", false),
+    };
+
+    private IEnumerable<ProjectItem> FilteredProjects =>
+        activeFilter == "Todos"
+            ? AllProjects
+            : AllProjects.Where(p => p.Tags.Any(t => t.Contains(activeFilter, StringComparison.OrdinalIgnoreCase)));
+
+    private record ProjectItem(
+        string Id, string Icon, string Title, string Description,
+        string[] Tags, string Area, string Color,
+        string GitHub, string Demo, bool Featured = false);
+}
+
+<style>
+    .page-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-lg);
+    }
+
+    .projects-hero { margin-bottom: var(--space-xl); padding-top: var(--space-lg); }
+
+    /* Filter */
+    .tag-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        justify-content: center;
+        margin-bottom: var(--space-xl);
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1.5rem;
+        background: transparent;
+        border: 1px solid var(--stone-mid);
+        color: var(--silk-silver);
+        font-family: var(--font-title);
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+    .filter-btn:hover, .filter-btn.active {
+        border-color: var(--soul-blue);
+        color: var(--soul-blue);
+        background: rgba(109, 181, 232, 0.1);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: var(--space-lg);
+    }
+
+    .project-card {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        padding: var(--space-lg);
+    }
+
+    .project-card.featured {
+        border-color: var(--geo-gold);
+        background: linear-gradient(135deg, var(--deep-cave), rgba(212, 168, 32, 0.05));
+    }
+    .project-card.featured:hover {
+        border-color: var(--geo-bright);
+        box-shadow: var(--shadow-geo), var(--shadow-deep);
+    }
+
+    .featured-badge {
+        position: absolute;
+        top: 12px; right: 12px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-family: var(--font-title);
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--geo-gold);
+        background: rgba(212, 168, 32, 0.1);
+        border: 1px solid rgba(212, 168, 32, 0.3);
+        padding: 2px 8px;
+        border-radius: 100px;
+    }
+
+    .project-header {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+
+    .project-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+        animation: breathe 3s ease-in-out infinite;
+    }
+
+    .project-meta { flex: 1; }
+
+    .project-area {
+        font-family: var(--font-title);
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 2px;
+        opacity: 0.7;
+    }
+
+    .project-title {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .project-desc {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        flex: 1;
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+    }
+
+    .project-links {
+        display: flex;
+        gap: var(--space-sm);
+        margin-top: auto;
+    }
+
+    .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--stone-mid);
+        border-radius: var(--radius-sm);
+        color: var(--silk-silver);
+        font-family: var(--font-title);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all var(--transition-base);
+    }
+    .project-link:hover {
+        border-color: var(--soul-blue);
+        color: var(--soul-blue);
+        background: rgba(109, 181, 232, 0.08);
+    }
+    .project-link.demo:hover {
+        border-color: var(--essence-purple);
+        color: var(--essence-purple);
+        background: rgba(180, 157, 212, 0.08);
+    }
+
+    /* Map stamp — decorative */
+    .map-stamp {
+        position: absolute;
+        bottom: -10px; right: -10px;
+        font-size: 4rem;
+        opacity: 0.04;
+        pointer-events: none;
+        transform: rotate(-15deg);
+        transition: opacity var(--transition-base);
+    }
+    .project-card:hover .map-stamp { opacity: 0.08; }
+
+    .no-results {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+
+    @@media (max-width: 700px) {
+        .projects-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+</div>
